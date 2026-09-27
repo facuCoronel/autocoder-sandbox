@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+node_modules/
+dist/
+.pytest_cache/
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts

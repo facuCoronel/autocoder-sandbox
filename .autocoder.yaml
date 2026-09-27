@@ -1,0 +1,47 @@
+version: 1
+skills:
+  - coding
+  - backend
+  - frontend
+  - testing
+  - architecture
+commands:
+  install:
+    - run: uv sync
+      cwd: backend
+      timeout_seconds: 600
+    - run: npm ci
+      cwd: frontend
+      timeout_seconds: 600
+  lint:
+    - run: uv run ruff check .
+      cwd: backend
+      timeout_seconds: 120
+    - run: npm run lint
+      cwd: frontend
+      timeout_seconds: 120
+  test:
+    - run: uv run pytest
+      cwd: backend
+      timeout_seconds: 180
+    - run: npm test -- --run
+      cwd: frontend
+      timeout_seconds: 180
+  build:
+    - run: npm run build
+      cwd: frontend
+      timeout_seconds: 180
+policy:
+  allowed_paths:
+    - backend/**
+    - frontend/**
+    - specs/**
+  denied_paths:
+    - .git/**
+    - .github/workflows/**
+    - .env
+    - .env.*
+    - "**/*.pem"
+environment:
+  CI: "true"
+
