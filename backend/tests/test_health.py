@@ -1,6 +1,6 @@
-from fastapi.testclient import TestClient
-
+# ruff: noqa: I001
 from app.main import app
+from fastapi.testclient import TestClient
 
 def test_health() -> None:
     response = TestClient(app).get("/api/health")
