@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, validator, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing import Literal
 
 
@@ -52,5 +52,4 @@ class User(BaseModel):
     def normalize_email(cls, v: str) -> str:
         return v.lower()
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)

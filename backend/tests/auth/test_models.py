@@ -23,3 +23,15 @@ def test_login_response_fields():
     resp = LoginResponse(access_token="abc123", token_type="bearer")
     assert resp.access_token == "abc123"
     assert resp.token_type == "bearer"
+
+
+def test_user_email_normalization():
+    user = User(email="TEST@Example.COM", password_hash="hash123")
+    assert user.email == "test@example.com"
+    assert user.password_hash == "hash123"
+    assert user.is_active is True
+
+
+def test_user_missing_fields():
+    with pytest.raises(ValidationError):
+        User(email="user@example.com")
