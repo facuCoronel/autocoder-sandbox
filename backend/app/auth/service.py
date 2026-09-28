@@ -31,8 +31,6 @@ class InvalidCredentials(Exception):
     cause (unknown email, inactive account, wrong password).
     """
 
-    pass
-
 
 class TokenIssuer(Protocol):
     """Abstraction for issuing opaque access tokens.

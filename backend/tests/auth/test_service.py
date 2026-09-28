@@ -1,4 +1,5 @@
 import hashlib
+
 import pytest
 
 from app.auth.models import LoginRequest, User
