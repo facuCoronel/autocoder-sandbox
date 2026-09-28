@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from typing import Protocol, Optional, Iterable
-
 from app.auth.models import User
+from collections.abc import Iterable
+
 
 
 class UserRepository(Protocol):
@@ -11,7 +11,7 @@ class UserRepository(Protocol):
     Only the operation required for the login flow is defined.
     """
 
-    def get_by_email(self, email: str) -> Optional[User]:
+    def get_by_email(self, email: str) -> User | None:
         """Return a :class:`User` matching *email* case‑insensitively.
 
         If no user exists, ``None`` is returned.
@@ -33,7 +33,7 @@ class InMemoryUserRepository:
                 # Ensure the stored key is lower‑case regardless of the user's email case.
                 self._users[user.email.lower()] = user
 
-    def get_by_email(self, email: str) -> Optional[User]:
+    def get_by_email(self, email: str) -> User | None:
         """Retrieve a user by e‑mail address.
 
         The lookup is case‑insensitive; the provided *email* is normalised to lower‑case before
