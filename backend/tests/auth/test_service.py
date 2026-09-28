@@ -3,7 +3,7 @@ import pytest
 
 from app.auth.models import LoginRequest, User
 from app.auth.repository import InMemoryUserRepository
-from app.auth.service import InvalidCredentials, LoginService, TokenIssuer
+from app.auth.service import InvalidCredentials, LoginService
 
 
 class DummyTokenIssuer:
