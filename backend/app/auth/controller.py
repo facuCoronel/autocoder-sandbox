@@ -1,7 +1,7 @@
 """Authentication controller (FastAPI router).
 
 Provides the ``/auth/login`` endpoint that authenticates a user via the
-:class:`~app.auth.service.LoginService`.  The endpoint is deliberately tiny – it
+:class:`~app.auth.service.LoginService`. The endpoint is intentionally tiny – it
 instantiates an in‑memory user repository with a single demo user (as required by
 the task) and delegates all logic to the service layer.
 
@@ -26,13 +26,11 @@ def login(request: LoginRequest) -> LoginResponse:
     Uses an in‑memory repository with a single demo user. On success returns a token.
     On any failure raises a generic 401 error.
     """
-    # Set up repository with demo user.
     repo = InMemoryUserRepository([_demo_user])
     service = LoginService(repo)
     try:
         return service.login(request)
     except InvalidCredentials:
-        # Generic unauthorized response without leaking details.
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
 
 
@@ -40,4 +38,6 @@ def login(request: LoginRequest) -> LoginResponse:
 # The password is stored as a SHA‑256 hex digest to match the repository expectations.
 _demo_user = User(
     email="test@example.com",
-    password_hash=""" + """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    password_hash=hashlib.sha256("correct-horse".encode()).hexdigest(),
+    is_active=True,
+)

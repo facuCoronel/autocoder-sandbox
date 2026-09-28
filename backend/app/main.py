@@ -9,4 +9,3 @@ app.include_router(auth_router)
 @app.get("/")
 def root() -> dict[str, str]:
     return {"message": "Auto-Coder sandbox"}
-
