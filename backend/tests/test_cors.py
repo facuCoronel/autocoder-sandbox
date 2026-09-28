@@ -7,13 +7,14 @@ The tests verify that:
   entries are ignored.
 * Requests from an origin not in the allowed list do not receive the
   ``access-control-allow-origin`` header.
-"""
 
-import os
+"""
 import importlib
+import os
+
 from fastapi.testclient import TestClient
 
-# Helper to perform a preflight OPTIONS request.
+
 def preflight(client: TestClient, origin: str) -> dict:
     return client.options(
         "/auth/login",

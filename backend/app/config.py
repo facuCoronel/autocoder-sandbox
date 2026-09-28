@@ -8,12 +8,11 @@ default suitable for local development is returned.
 """
 
 import os
-from typing import List
 
-DEFAULT_ORIGINS: List[str] = ["http://localhost:5173", "http://127.0.0.1:5173"]
+DEFAULT_ORIGINS: list[str] = ["http://localhost:5173", "http://127.0.0.1:5173"]
 
 
-def get_allowed_origins() -> List[str]:
+def get_allowed_origins() -> list[str]:
     """Return the list of origins permitted for CORS.
 
     The environment variable ``CORS_ALLOWED_ORIGINS`` may contain a comma‑separated

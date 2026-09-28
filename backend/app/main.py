@@ -1,13 +1,12 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.auth.controller import router as auth_router
+from app.config import get_allowed_origins
 
 app = FastAPI(title="Auto-Coder sandbox")
 
 # Register CORS middleware using allowed origins from config.
-from app.config import get_allowed_origins
-from fastapi.middleware.cors import CORSMiddleware
-
 origins = get_allowed_origins()
 app.add_middleware(
     CORSMiddleware,
