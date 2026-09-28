@@ -31,7 +31,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
     try {
       const response = await login(credentials);
       onLoginSuccess(response);
-    } catch (err) {
+    } catch {
       // Any error (401, network, etc.) is shown as a generic message.
       setError('Error al iniciar sesión. Por favor, inténtalo de nuevo.');
     } finally {
