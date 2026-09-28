@@ -11,8 +11,8 @@ email, password or user status was the problem.
 """
 
 import hashlib
-from fastapi import APIRouter, HTTPException, status
 
+from fastapi import APIRouter, HTTPException, status
 
 from app.auth.models import LoginRequest, LoginResponse, User
 from app.auth.repository import InMemoryUserRepository
