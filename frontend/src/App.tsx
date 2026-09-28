@@ -10,7 +10,8 @@ import type { LoginResponse } from './auth/types';
 const App: React.FC = () => {
   const [authenticated, setAuthenticated] = useState(false);
 
-  const handleLoginSuccess = (response: LoginResponse) => {
+/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+  const handleLoginSuccess = (_response: LoginResponse) => {
     // The token is intentionally not stored or displayed.
     setAuthenticated(true);
     // In a real app you would forward the token to a context/provider.
