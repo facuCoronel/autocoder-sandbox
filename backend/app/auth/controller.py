@@ -10,11 +10,13 @@ The controller returns a ``LoginResponse`` on success and raises a generic
 email, password or user status was the problem.
 """
 
+import hashlib
 from fastapi import APIRouter, HTTPException, status
+
+
 from app.auth.models import LoginRequest, LoginResponse, User
 from app.auth.repository import InMemoryUserRepository
 from app.auth.service import InvalidCredentials, LoginService
-import hashlib
 
 router = APIRouter(prefix="/auth")
 
@@ -38,6 +40,6 @@ def login(request: LoginRequest) -> LoginResponse:
 # The password is stored as a SHA‑256 hex digest to match the repository expectations.
 _demo_user = User(
     email="test@example.com",
-    password_hash=hashlib.sha256("correct-horse".encode()).hexdigest(),
+    password_hash=hashlib.sha256(b"correct-horse").hexdigest(),
     is_active=True,
 )
