@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from app.auth.models import User
 from collections.abc import Iterable
-
+from typing import Protocol
+from app.auth.models import User
 
 
 class UserRepository(Protocol):
@@ -39,5 +39,4 @@ class InMemoryUserRepository:
         The lookup is case‑insensitive; the provided *email* is normalised to lower‑case before
         searching the internal dictionary.
         """
-
         return self._users.get(email.lower())
