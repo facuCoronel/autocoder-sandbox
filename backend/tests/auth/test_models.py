@@ -1,5 +1,6 @@
 import pytest
 from pydantic import ValidationError
+
 from app.auth.models import LoginRequest, LoginResponse, User
 
 
