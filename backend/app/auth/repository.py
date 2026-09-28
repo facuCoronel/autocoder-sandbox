@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 from typing import Protocol
+
 from app.auth.models import User
 
 
